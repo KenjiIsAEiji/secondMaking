@@ -16,7 +16,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float JumpPower = 15.0f;
     [SerializeField] float JetPower = 10;
 
+    [SerializeField] Transform BodyTransform;
+    [SerializeField] Transform CamTransform;
+    [SerializeField] float turnSpeed = 10;
+
     [SerializeField] float NomalSpeed = 10.0f;
+    [SerializeField] float SprintScaleFactor = 2.0f;
 
     [SerializeField] float HoverSwitchTime = 0.5f;
 
@@ -60,13 +65,35 @@ public class PlayerController : MonoBehaviour
             case State.Hover:
                 Debug.Log("now Hover");
                 PlayerIsHover();
-                break;        
+                break;
         }
 
-        character.Move(transform.TransformDirection(Moving * Time.deltaTime));
+        transform.eulerAngles = new Vector3(
+                transform.eulerAngles.x,
+                CamTransform.eulerAngles.y,
+                transform.eulerAngles.z
+            );
 
+        character.Move(transform.TransformDirection(Moving * Time.deltaTime));
     }
 
+    private void BodyTurn()
+    {
+        BodyTransform.localRotation = Quaternion.Slerp(
+            BodyTransform.localRotation,
+            Quaternion.LookRotation(new Vector3(Move_x, 0, Move_z)),
+            turnSpeed * Time.deltaTime
+        );
+    }
+
+    private void BodyNomal()
+    {
+        BodyTransform.localRotation = Quaternion.Slerp(
+            BodyTransform.localRotation,
+            Quaternion.LookRotation(new Vector3(0, 0, 0)),
+            turnSpeed * Time.deltaTime
+        );
+    }
 
     private void PlayerIsGround()
     {
@@ -75,10 +102,23 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(transform.position, -transform.up, GroundedHight)){
             Debug.Log("IsGrounded");
 
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                Moving = new Vector3(
+                    Move_x * NomalSpeed * SprintScaleFactor,
+                    Moving.y,
+                    Move_z * NomalSpeed * SprintScaleFactor
+                );
+
+                BodyTurn();
+            }
+            else
+            {
+                Moving = new Vector3(Move_x * NomalSpeed, Moving.y, Move_z * NomalSpeed);
+                BodyNomal();
+            }
+
             flytime = 0.0f;
-
-            Moving = new Vector3(Move_x * NomalSpeed, Moving.y, Move_z * NomalSpeed);
-
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Moving.y = JumpPower;
@@ -98,6 +138,22 @@ public class PlayerController : MonoBehaviour
     private void PlayerIsHover()
     {
         Moving = new Vector3(Move_x, 0, Move_z) * NomalSpeed;
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            Moving = new Vector3(
+                Move_x * NomalSpeed * SprintScaleFactor,
+                0,
+                Move_z * NomalSpeed * SprintScaleFactor
+            );
+
+            BodyTurn();
+        }
+        else
+        {
+            Moving = new Vector3(Move_x * NomalSpeed, 0, Move_z * NomalSpeed);
+            BodyNomal();
+        }
 
         if (Input.GetKey(KeyCode.Space))
         {
