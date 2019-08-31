@@ -6,6 +6,7 @@ public class TPSCamera : MonoBehaviour
 {
     [SerializeField] Transform Player;
     [SerializeField] float RotateSpeed = 10.0f;
+    [SerializeField] float FollowSpeed = 10.0f;
 
     float yaw, pitch;
     
@@ -18,7 +19,7 @@ public class TPSCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, Player.transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, Player.position, FollowSpeed * Time.deltaTime);
 
         yaw += Input.GetAxis("Mouse X") * RotateSpeed * Time.deltaTime;
         pitch -= Input.GetAxis("Mouse Y") * RotateSpeed * Time.deltaTime;
