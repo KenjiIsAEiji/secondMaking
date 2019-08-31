@@ -5,6 +5,8 @@ using UnityEngine;
 
 /// <summary>
 /// プレイヤーの状態を地上状態(State.Ground)と浮遊状態(State.Hover)として、ステート管理
+/// ステートに応じて移動やアニメーションを変更
+/// 
 /// 
 /// </summary>
 
