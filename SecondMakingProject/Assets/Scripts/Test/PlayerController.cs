@@ -15,32 +15,44 @@ public class PlayerController : MonoBehaviour
     // 基本的なキャラクターの移動として、CharacterControllerを使用
     CharacterController character;
 
+    // 重力とジャンプ・浮遊力の設定
     [SerializeField] float Gravity = 20.0f;
     [SerializeField] float JumpPower = 15.0f;
     [SerializeField] float JetPower = 10;
 
+    // キャラクターの向きの取得と向きの変更スピード、浮遊スプリント時に上向きになる角度
     [SerializeField] Transform BodyTransform;
-    [SerializeField] Transform CamTransform;
     [SerializeField] float turnSpeed = 10;
     [SerializeField] float lazeAngle = 10.0f;
 
+    // カメラの向きの取得用
+    [SerializeField] Transform CamTransform;
+
+    // 移動速度の設定（通常、地上・空中でのスプリント時の速度の倍率）
     [SerializeField] float NomalSpeed = 10.0f;
     [SerializeField] float SprintScaleFactor = 2.0f;
     [SerializeField] float AirSprintScaleFactor = 3.0f;
 
+    // 空中になってからHover状態に推移できる時間
     [SerializeField] float HoverSwitchTime = 0.5f;
+    float flytime;  // 浮遊時間を格納する用
 
+    // 地面に接地判定をするRayの長さ
+    [SerializeField] float GroundedHight;
+
+    // Hover状態でのスプリント時に当たり判定の半径を変更する値
+    [SerializeField] float AirSprintRadius = 1.77f;
+    float defaltRadius;　// デフォルトの半径格納用
+
+    // アニメション制御用
+    [SerializeField] Animator animator;
+
+    // CharacterControllerに渡す移動量
     Vector3 Moving = Vector3.zero;
 
-    [SerializeField] float GroundedHight;
-    [SerializeField] float AirSprintRadius = 1.77f;
-    float defaltRadius;
-
+    // キーボードからの入力格納用
     float Move_x;
     float Move_z;
-    float flytime;
-
-    [SerializeField] Animator animator;
 
     //プレイヤーの状態を定義
     enum State
@@ -49,6 +61,7 @@ public class PlayerController : MonoBehaviour
         Hover
     }
 
+    // ステート定義
     State PlayerState;
     
 
