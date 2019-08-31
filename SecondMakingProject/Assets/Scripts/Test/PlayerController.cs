@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
+/// <プログラム概要>
 /// プレイヤーの状態を地上状態(State.Ground)と浮遊状態(State.Hover)として、ステート管理
 /// ステートに応じて移動やアニメーションを変更
 /// 
@@ -63,9 +64,8 @@ public class PlayerController : MonoBehaviour
 
     // ステート定義
     State PlayerState;
-    
 
-    // Start is called before the first frame update
+    /// startメソッド --------------------------------------------------------------------
     void Start()
     {
         PlayerState = State.Ground;
@@ -73,37 +73,41 @@ public class PlayerController : MonoBehaviour
         defaltRadius = character.radius;
     }
 
-    // Update is called once per frame
+    // Updateメソッド---------------------------------------------------------------------
     void Update()
     {
+        // キーボード入力を格納
         Move_x = Input.GetAxis("Horizontal");
         Move_z = Input.GetAxis("Vertical");
 
-
+        // アニメーションのblendTree制御のためキーボード入力を渡す
         animator.SetFloat("moving_x", Move_x);
         animator.SetFloat("moving_z", Move_z);
 
+        // 各ステートの処理の分岐---------------------------------------
         switch (PlayerState)
         {
             case State.Ground:
                 Debug.Log("now Ground");
-                animator.SetBool("Hovering", false);
+                animator.SetBool("Hovering", false);    // アニメーションでHover状態の解除
                 PlayerIsGround();
                 break;
 
             case State.Hover:
                 Debug.Log("now Hover");
-                animator.SetBool("Hovering", true);
+                animator.SetBool("Hovering", true);     // アニメーションでHover状態に
                 PlayerIsHover();
                 break;
         }
 
+        // カメラの向きを取得し、プレイヤーの向きと同期
         transform.eulerAngles = new Vector3(
                 transform.eulerAngles.x,
                 CamTransform.eulerAngles.y,
                 transform.eulerAngles.z
             );
 
+        // 最終的な移動ベクトルをワールドプレイヤーからのワールド座標に変換し、キャラクターを移動
         character.Move(transform.TransformDirection(Moving * Time.deltaTime));
     }
 
