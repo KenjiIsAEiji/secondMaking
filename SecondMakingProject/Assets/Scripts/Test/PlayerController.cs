@@ -130,7 +130,14 @@ public class PlayerController : MonoBehaviour
             // Sprint
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                animator.SetBool("Sprint", true);
+                if (Move_x != 0.0f || Move_z != 0.0f)
+                {
+                    animator.SetBool("Sprint", true);
+                }
+                else
+                {
+                    animator.SetBool("Sprint", false);
+                }
 
                 // スプリント時は移動スピードにスプリント倍率を適用
                 Moving = new Vector3(
@@ -187,7 +194,18 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            animator.SetBool("Sprint", true);
+            if (Move_x != 0.0f || Move_z != 0.0f)
+            {
+                animator.SetBool("Sprint", true);
+                
+                // 空中スプリント時はキャラクターの当たり判定の半径を変更
+                character.radius = AirSprintRadius;
+            }
+            else
+            {
+                animator.SetBool("Sprint", false);
+                character.radius = defaltRadius;
+            }
 
             // スプリント時は移動スピードに、空中時のスプリント倍率を適用
             Moving = new Vector3(
@@ -204,8 +222,7 @@ public class PlayerController : MonoBehaviour
 
             BodyTurn(Quaternion.LookRotation(new Vector3(Move_x, 0, Move_z)));
 
-            // 空中スプリント時はキャラクターの当たり判定の半径を変更
-            character.radius = AirSprintRadius;
+            
         }
         else
         {

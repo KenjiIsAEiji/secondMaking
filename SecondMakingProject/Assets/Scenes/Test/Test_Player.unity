@@ -199,7 +199,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -493,9 +493,9 @@ MonoBehaviour:
   JumpPower: 20
   JetPower: 10
   BodyTransform: {fileID: 12055058}
-  CamTransform: {fileID: 1598777889}
   turnSpeed: 10
   lazeAngle: 5
+  CamTransform: {fileID: 1598777889}
   NomalSpeed: 8
   SprintScaleFactor: 2.5
   AirSprintScaleFactor: 5
