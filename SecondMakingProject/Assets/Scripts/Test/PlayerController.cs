@@ -111,39 +111,11 @@ public class PlayerController : MonoBehaviour
         character.Move(transform.TransformDirection(Moving * Time.deltaTime));
     }
 
-    private void BodyTurn()
+    private void BodyTurn(Quaternion Target)
     {
         BodyTransform.localRotation = Quaternion.Slerp(
             BodyTransform.localRotation,
-            Quaternion.LookRotation(new Vector3(Move_x, 0, Move_z)),
-            turnSpeed * Time.deltaTime
-        );
-    }
-
-    private void BodyNomal()
-    {
-        BodyTransform.localRotation = Quaternion.Slerp(
-            BodyTransform.localRotation,
-            Quaternion.LookRotation(new Vector3(0, 0, 0)),
-            turnSpeed * Time.deltaTime
-        );
-    }
-
-    private void BodyTurnUp()
-    {
-        BodyTransform.localRotation = Quaternion.Slerp(
-            BodyTransform.localRotation,
-            Quaternion.LookRotation(new Vector3(Move_x, lazeAngle, Move_z)),
-            turnSpeed * Time.deltaTime
-        );
-    }
-
-
-    private void BodyAirTurn()
-    {
-        BodyTransform.localRotation = Quaternion.Slerp(
-            BodyTransform.localRotation,
-            Quaternion.Euler(Move_z * 15, 0, Move_x * -15),
+            Target,
             turnSpeed * Time.deltaTime
         );
     }
@@ -167,13 +139,13 @@ public class PlayerController : MonoBehaviour
                     Move_z * NomalSpeed * SprintScaleFactor
                 );
 
-                BodyTurn();
+                BodyTurn(Quaternion.LookRotation(new Vector3(Move_x, 0, Move_z)));
             }
             else
             {
                 animator.SetBool("Sprint", false);
                 Moving = new Vector3(Move_x * NomalSpeed, Moving.y, Move_z * NomalSpeed);
-                BodyNomal();
+                BodyTurn(Quaternion.LookRotation(new Vector3(0, 0, 0)));
             }
             
 
@@ -214,10 +186,10 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetKey(KeyCode.Space))
             {
-                BodyTurnUp();
+                BodyTurn(Quaternion.LookRotation(new Vector3(Move_x, lazeAngle, Move_z)));
             }
 
-            BodyTurn();
+            BodyTurn(Quaternion.LookRotation(new Vector3(Move_x, 0, Move_z)));
 
             character.radius = AirSprintRadius;
         }
@@ -225,7 +197,7 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("Sprint", false);
             Moving = new Vector3(Move_x * NomalSpeed, 0, Move_z * NomalSpeed);
-            BodyAirTurn();
+            BodyTurn(Quaternion.Euler(Move_z * 15, 0, Move_x * -15));
             character.radius = defaltRadius;
         }
 
