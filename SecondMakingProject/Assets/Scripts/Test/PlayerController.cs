@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float NomalSpeed = 10.0f;
     [SerializeField] float SprintScaleFactor = 2.0f;
     [SerializeField] float AirSprintScaleFactor = 3.0f;
+    public bool IsAds;      //
 
     // 空中になってからHover状態に推移できる時間
     [SerializeField] float HoverSwitchTime = 0.5f;
@@ -128,7 +129,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsGround", true);
 
             // Sprint
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) && IsAds == false)
             {
                 if (Move_x != 0.0f || Move_z != 0.0f)
                 {
@@ -192,7 +193,7 @@ public class PlayerController : MonoBehaviour
     {
         Moving = new Vector3(Move_x, 0, Move_z) * NomalSpeed;
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && IsAds == false)
         {
             if (Move_x != 0.0f || Move_z != 0.0f)
             {
