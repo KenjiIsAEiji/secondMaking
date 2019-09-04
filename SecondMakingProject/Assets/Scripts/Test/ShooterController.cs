@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class ShooterController : MonoBehaviour
 {
-    [SerializeField] Camera ControlCamera;
+    Camera ControlCamera;
     [Range(1f, 179f)] public float NomalFOV = 40f;
     [Range(1f, 179f)] [SerializeField] float AdsFOV = 25f;
     [SerializeField] float ChengeSpeed = 10f;
 
     [SerializeField] PlayerController playerController;
 
+    [SerializeField] Animator animator;
+    private Vector3 DefaultSplainAngle;
+
     // Start is called before the first frame update
     void Start()
     {
+        ControlCamera = GetComponent<Camera>();
+        DefaultSplainAngle = animator.GetBoneTransform(HumanBodyBones.UpperChest).localEulerAngles;
         ControlCamera.fieldOfView = NomalFOV;
     }
 
@@ -32,13 +37,12 @@ public class ShooterController : MonoBehaviour
         }
     }
 
-    void ChengeFOV(float fov)
+    void ChengeFOV(float TargetFOV)
     {
         ControlCamera.fieldOfView = Mathf.Lerp(
             ControlCamera.fieldOfView,
-            fov,
+            TargetFOV,
             ChengeSpeed * Time.deltaTime
         );
     }
-
 }
