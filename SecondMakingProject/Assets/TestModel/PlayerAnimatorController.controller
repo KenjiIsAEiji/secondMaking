@@ -263,7 +263,7 @@ AnimatorStateTransition:
     m_ConditionEvent: Hovering
     m_EventTreshold: 0
   - m_ConditionMode: 1
-    m_ConditionEvent: Sprint
+    m_ConditionEvent: c
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7734220642622562142}
@@ -623,22 +623,6 @@ AnimatorController:
     m_IKPass: 1
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
-  - serializedVersion: 5
-    m_Name: New Layer
-    m_StateMachine: {fileID: 4705195301721521252}
-    m_Mask: {fileID: 31900000, guid: a127f51e7548fdd429bcc9b53f4f61fd, type: 2}
-    m_Motions:
-    - serializedVersion: 2
-      m_State: {fileID: 370228882112922142}
-      m_Motion: {fileID: -203655887218126122, guid: c21eb6a526b7d2048a5d6d09a9472a88,
-        type: 3}
-    m_Behaviours: []
-    m_BlendingMode: 0
-    m_SyncedLayerIndex: 0
-    m_DefaultWeight: 0
-    m_IKPass: 0
-    m_SyncedLayerAffectsTiming: 0
-    m_Controller: {fileID: 9100000}
 --- !u!1102 &370228882112922142
 AnimatorState:
   serializedVersion: 5
@@ -757,9 +741,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.04081428
   m_TransitionOffset: 0
-  m_ExitTime: 0.06250018
+  m_ExitTime: 0.8469465
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -851,7 +835,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: f35c46d30d3513e44b15cd89290519cc,
+  m_Motion: {fileID: -203655887218126122, guid: fbeb3f8ccc3ad2947b612abdd3bbd183,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -1048,9 +1032,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.5
+  m_TransitionDuration: 0.02566281
+  m_TransitionOffset: 0.0081675425
+  m_ExitTime: 0.9486744
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0

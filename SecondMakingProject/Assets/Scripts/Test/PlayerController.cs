@@ -121,10 +121,9 @@ public class PlayerController : MonoBehaviour
     private void PlayerIsGround()
     {
         character.radius = defaltRadius;        // 地上では常にデフォルトの当たり判定
-        Moving.y -= Gravity * Time.deltaTime;
 
         // 接地判定にはRaycastを使用
-        if (Physics.Raycast(transform.position, -transform.up, GroundedHight)){
+        if (Physics.SphereCast(transform.position, defaltRadius * 0.5f,-transform.up, out RaycastHit hit, GroundedHight)){
             Debug.Log("IsGrounded");
             animator.SetBool("IsGround", true);
 
@@ -153,6 +152,7 @@ public class PlayerController : MonoBehaviour
             else
             {
                 animator.SetBool("Sprint", false);
+
                 Moving = new Vector3(Move_x * NomalSpeed, Moving.y, Move_z * NomalSpeed);
                 BodyTurn(Quaternion.LookRotation(new Vector3(0, 0, 0)));        // 通常時のキャラクターは、カメラを向く
             }
@@ -166,6 +166,8 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            Moving.y -= Gravity * Time.deltaTime;
+
             animator.SetBool("IsGround", false);
             animator.SetBool("Sprint", false);
 
