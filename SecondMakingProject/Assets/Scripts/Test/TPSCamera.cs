@@ -8,7 +8,7 @@ public class TPSCamera : MonoBehaviour
     [SerializeField] float RotateSpeed = 10.0f;
     [SerializeField] float FollowSpeed = 10.0f;
 
-    float yaw, pitch;
+    private float yaw, pitch;
     
     // Start is called before the first frame update
     void Start()

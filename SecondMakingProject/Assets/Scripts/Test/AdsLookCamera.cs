@@ -6,37 +6,55 @@ public class AdsLookCamera : MonoBehaviour
 {
     [SerializeField] PlayerController playerController;
     Animator animator;
+
     [SerializeField] Transform ControlCamera;
 
-    private Vector3 DefaultSplainAngle;
+    [SerializeField] Transform GunTransform;
+    [SerializeField] Transform rightHand, leftHand;
+
+    //[SerializeField] TPSCamera TpsCamera;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        DefaultSplainAngle = animator.GetBoneTransform(HumanBodyBones.UpperChest).localEulerAngles;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
     }
 
     private void OnAnimatorIK()
     {
-        if (playerController.IsAds)
+        if(animator.GetBool("Sprint") == false)
         {
-            animator.SetLookAtWeight(1.0f, 0.8f, 1.0f, 0.0f, 0f);
+            GunTransform.LookAt(ControlCamera.position);
+
+            animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+            animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
+
+            animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
+            animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
+
+            animator.SetIKPosition(AvatarIKGoal.RightHand, rightHand.position);
+            animator.SetIKRotation(AvatarIKGoal.RightHand, rightHand.rotation);
+
+            animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHand.position);
+            animator.SetIKRotation(AvatarIKGoal.LeftHand, leftHand.rotation);
+
+            animator.SetLookAtWeight(1.0f, 0.0f, 1.0f, 1.0f, 0f);
             animator.SetLookAtPosition(ControlCamera.position);
         }
         else
         {
-            if (animator.GetBool("Sprint") == false)
-            {
-                animator.SetLookAtWeight(1.0f, 0.0f, 1.0f, 0.0f, 0f);
-                animator.SetLookAtPosition(ControlCamera.position);
-            }
+            animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+            animator.SetIKRotationWeight(AvatarIKGoal.RightHand, 1);
+
+            animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1);
+            animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 1);
+
+            animator.SetIKPosition(AvatarIKGoal.RightHand, rightHand.position);
+            animator.SetIKRotation(AvatarIKGoal.RightHand, rightHand.rotation);
+
+            animator.SetIKPosition(AvatarIKGoal.LeftHand, leftHand.position);
+            animator.SetIKRotation(AvatarIKGoal.LeftHand, leftHand.rotation);
         }
     }
 }
