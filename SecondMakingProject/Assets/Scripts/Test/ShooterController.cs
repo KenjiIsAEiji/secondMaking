@@ -28,6 +28,15 @@ public class ShooterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (animator.GetBool("Sprint"))
+        {
+            ChengeFOV(NomalFOV * 1.5f);
+        }
+        else
+        {
+            ChengeFOV(NomalFOV);
+        }
+
         if (Input.GetMouseButton(1))
         {
             ChengeFOV(AdsFOV);

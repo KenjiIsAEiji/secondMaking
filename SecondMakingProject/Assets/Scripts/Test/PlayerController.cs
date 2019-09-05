@@ -236,7 +236,7 @@ public class PlayerController : MonoBehaviour
             Moving = new Vector3(Move_x * NomalSpeed, 0, Move_z * NomalSpeed);
 
             // 空中での通常移動では移動方向に傾く
-            BodyTurn(Quaternion.Euler(Move_z * 15, 0, Move_x * -15));
+            BodyTurn(Quaternion.Euler(Move_z * 10, 0, Move_x * -10));
 
             character.radius = defaltRadius;
         }
