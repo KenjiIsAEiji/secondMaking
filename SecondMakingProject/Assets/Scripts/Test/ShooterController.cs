@@ -20,6 +20,9 @@ public class ShooterController : MonoBehaviour
         ControlCamera = GetComponent<Camera>();
         DefaultSplainAngle = animator.GetBoneTransform(HumanBodyBones.UpperChest).localEulerAngles;
         ControlCamera.fieldOfView = NomalFOV;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     // Update is called once per frame

@@ -169,6 +169,9 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("IsGround", false);
             animator.SetBool("Sprint", false);
 
+            // 地面についていない状態では、カメラを向くように設定
+            BodyTurn(Quaternion.LookRotation(new Vector3(0, 0, 0)));
+
             // 空中にいる時間をカウント
             flytime += Time.deltaTime;
 
