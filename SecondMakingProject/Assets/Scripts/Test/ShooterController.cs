@@ -5,8 +5,10 @@ using UnityEngine;
 public class ShooterController : MonoBehaviour
 {
     Camera ControlCamera;
-    [Range(1f, 179f)] public float NomalFOV = 40f;
-    [Range(1f, 179f)] [SerializeField] float AdsFOV = 25f;
+    [Range(1f, 179f)] public int NomalFOV = 40;
+    [Range(1f, 179f)] [SerializeField] int AdsFOV = 25;
+    [Range(1f, 179f)] [SerializeField] int SprintFOV = 80;
+
     [SerializeField] float ChengeSpeed = 10f;
 
     [SerializeField] PlayerController playerController;
@@ -30,7 +32,7 @@ public class ShooterController : MonoBehaviour
     {
         if (animator.GetBool("Sprint"))
         {
-            ChengeFOV(NomalFOV * 1.5f);
+            ChengeFOV(SprintFOV);
         }
         else
         {
@@ -49,7 +51,7 @@ public class ShooterController : MonoBehaviour
         }
     }
 
-    void ChengeFOV(float TargetFOV)
+    void ChengeFOV(int TargetFOV)
     {
         ControlCamera.fieldOfView = Mathf.Lerp(
             ControlCamera.fieldOfView,
