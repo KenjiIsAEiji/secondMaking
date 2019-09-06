@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShooterController : MonoBehaviour
 {
-    Camera ControlCamera;
+    Cinemachine.CinemachineVirtualCamera virtualCamera;
     [Range(1f, 179f)] public float NomalFOV = 40;
     [Range(1f, 179f)] [SerializeField] float AdsFOV = 25;
 
@@ -17,8 +17,8 @@ public class ShooterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ControlCamera = GetComponent<Camera>();
-        ControlCamera.fieldOfView = NomalFOV;
+        virtualCamera = GetComponent<Cinemachine.CinemachineVirtualCamera>();
+        virtualCamera.m_Lens.FieldOfView = NomalFOV;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -47,8 +47,8 @@ public class ShooterController : MonoBehaviour
 
     void ChengeFOV(float TargetFOV)
     {
-        ControlCamera.fieldOfView = Mathf.Lerp(
-            ControlCamera.fieldOfView,
+        virtualCamera.m_Lens.FieldOfView = Mathf.Lerp(
+            virtualCamera.m_Lens.FieldOfView,
             TargetFOV,
             ChengeSpeed * Time.deltaTime
         );
