@@ -692,7 +692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c7741850eebe1df4ea75a80275b16311, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.6697018
+      value: 1.3770531
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: c7741850eebe1df4ea75a80275b16311, type: 3}
       propertyPath: m_LocalScale.y
@@ -881,12 +881,12 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.1
-  far clip plane: 5000
-  field of view: 50
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 40
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -909,7 +909,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1598777886}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.27, y: 1.29, z: -5.74}
+  m_LocalPosition: {x: 1.13, y: 1.29, z: -4.42}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2146352900}
@@ -936,10 +936,10 @@ MonoBehaviour:
   finalBlitToCameraTarget: 1
   antialiasingMode: 3
   temporalAntialiasing:
-    jitterSpread: 0.367
+    jitterSpread: 0.412
     sharpness: 0
     stationaryBlending: 0.9
-    motionBlending: 0.21
+    motionBlending: 0.253
   subpixelMorphologicalAntialiasing:
     quality: 2
   fastApproximateAntialiasing:
@@ -988,9 +988,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eea50292854f1454fa6c262c258126f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NomalFOV: 50
-  AdsFOV: 10
-  ChengeSpeed: 8
+  NomalFOV: 40
+  AdsFOV: 21
+  ChengeSpeed: 10
   playerController: {fileID: 1500043445}
   animator: {fileID: 556280726}
 --- !u!1 &2126118319

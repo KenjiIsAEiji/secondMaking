@@ -209,7 +209,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: AirWalking
-  m_Speed: 0.1
+  m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 4211056891293120931}
@@ -224,7 +224,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: c21eb6a526b7d2048a5d6d09a9472a88,
+  m_Motion: {fileID: -203655887218126122, guid: 0e6e34d1874f3874091ddae0df24bdc0,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
@@ -640,7 +640,7 @@ AnimatorController:
         type: 3}
     - serializedVersion: 2
       m_State: {fileID: -3784474132430093367}
-      m_Motion: {fileID: -203655887218126122, guid: 603a7f38218c2224785a5dd46ec47c96,
+      m_Motion: {fileID: -203655887218126122, guid: c21eb6a526b7d2048a5d6d09a9472a88,
         type: 3}
     - serializedVersion: 2
       m_State: {fileID: -7734220642622562142}
@@ -649,7 +649,7 @@ AnimatorController:
     m_Behaviours: []
     m_BlendingMode: 0
     m_SyncedLayerIndex: 0
-    m_DefaultWeight: 0
+    m_DefaultWeight: 1
     m_IKPass: 1
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}

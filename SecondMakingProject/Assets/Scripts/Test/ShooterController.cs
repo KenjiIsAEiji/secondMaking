@@ -30,13 +30,16 @@ public class ShooterController : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             ChengeFOV(AdsFOV);
+            playerController.IsAds = true;
         }
         else if(animator.GetBool("Sprint"))
         {
+
             ChengeFOV(NomalFOV * 1.5f);
         }
         else
         {
+            playerController.IsAds = false;
             ChengeFOV(NomalFOV);
         }
         
