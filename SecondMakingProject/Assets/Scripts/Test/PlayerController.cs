@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// <プログラム概要>
@@ -123,7 +120,8 @@ public class PlayerController : MonoBehaviour
         character.radius = defaltRadius;        // 地上では常にデフォルトの当たり判定
 
         // 接地判定にはRaycastを使用
-        if (Physics.SphereCast(transform.position, defaltRadius * 0.5f,-transform.up, out RaycastHit hit, GroundedHight)){
+        if (Physics.SphereCast(transform.position, defaltRadius * 0.5f, -transform.up, out RaycastHit hit, GroundedHight))
+        {
             Debug.Log("IsGrounded");
             animator.SetBool("IsGround", true);
 
@@ -156,7 +154,7 @@ public class PlayerController : MonoBehaviour
                 Moving = new Vector3(Move_x * NomalSpeed, Moving.y, Move_z * NomalSpeed);
                 BodyTurn(Quaternion.LookRotation(new Vector3(0, 0, 0)));        // 通常時のキャラクターは、カメラを向く
             }
-            
+
             flytime = 0.0f;         // 浮遊時間をリセット
             if (Input.GetKeyDown(KeyCode.Space))        // Spaceキーでジャンプ
             {
@@ -203,7 +201,7 @@ public class PlayerController : MonoBehaviour
             if (Move_x != 0.0f || Move_z != 0.0f)
             {
                 animator.SetBool("Sprint", true);
-                
+
                 // 空中スプリント時はキャラクターの当たり判定の半径を変更
                 character.radius = AirSprintRadius;
             }
@@ -223,12 +221,20 @@ public class PlayerController : MonoBehaviour
             // スプリント時の上昇では、上向きに角度を
             if (Input.GetKey(KeyCode.Space))
             {
-                BodyTurn(Quaternion.LookRotation(new Vector3(Move_x, lazeAngle, Move_z)));
+                if (Move_x != 0.0f || Move_z != 0.0f)
+                {
+                    BodyTurn(Quaternion.LookRotation(new Vector3(Move_x, lazeAngle, Move_z)));
+                }
+                else
+                {
+                    BodyTurn(Quaternion.LookRotation(new Vector3(Move_x, 0, Move_z)));
+                }
+
             }
 
             BodyTurn(Quaternion.LookRotation(new Vector3(Move_x, 0, Move_z)));
 
-            
+
         }
         else
         {
