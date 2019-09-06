@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class ShooterController : MonoBehaviour
 {
-    Cinemachine.CinemachineVirtualCamera virtualCamera;
+    CinemachineVirtualCamera virtualCamera;
     [Range(1f, 179f)] public float NomalFOV = 40;
     [Range(1f, 179f)] [SerializeField] float AdsFOV = 25;
 
@@ -17,7 +18,7 @@ public class ShooterController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        virtualCamera = GetComponent<Cinemachine.CinemachineVirtualCamera>();
+        virtualCamera = GetComponent<CinemachineVirtualCamera>();
         virtualCamera.m_Lens.FieldOfView = NomalFOV;
 
         Cursor.lockState = CursorLockMode.Locked;
