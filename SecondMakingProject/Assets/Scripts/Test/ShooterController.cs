@@ -33,7 +33,8 @@ public class ShooterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Physics.Raycast(transform.position,transform.forward,out raycastHit, TargetDistance))
+        Vector3 rayOrigin = transform.position + transform.forward * TargetDistance * 0.05f;
+        if (Physics.Raycast(rayOrigin,transform.forward,out raycastHit, TargetDistance))
         {
             TargettingPosition = raycastHit.point;
         }
