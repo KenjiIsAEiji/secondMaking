@@ -3774,16 +3774,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 556280724}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc6ad00354a91f046bbd69e5f447494d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 1500043445}
-  CameraTarget: {fileID: 0}
+  shooterController: {fileID: 1094169877}
   GunTransform: {fileID: 2126118320}
   rightHand: {fileID: 1293465398}
   leftHand: {fileID: 98077094}
+  TargettingSpeed: 20
 --- !u!1 &636926140
 GameObject:
   m_ObjectHideFlags: 0
@@ -3934,7 +3935,6 @@ Transform:
   m_Children:
   - {fileID: 1094169874}
   - {fileID: 636926141}
-  - {fileID: 2146352900}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4062,10 +4062,8 @@ MonoBehaviour:
   ChengeSpeed: 10
   playerController: {fileID: 1500043445}
   animator: {fileID: 556280726}
-  ControlCamera: {fileID: 636926141}
-  GunTransform: {fileID: 0}
-  rightHand: {fileID: 0}
-  leftHand: {fileID: 0}
+  TargettingPosition: {x: 0, y: 0, z: 0}
+  TargetDistance: 100
 --- !u!1 &1293465397
 GameObject:
   m_ObjectHideFlags: 0
@@ -5076,33 +5074,3 @@ Transform:
   m_Father: {fileID: 1053422571}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -23.064001, y: -46.185, z: 19.164001}
---- !u!1 &2146352899
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2146352900}
-  m_Layer: 0
-  m_Name: GunTarget
-  m_TagString: Untagged
-  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2146352900
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2146352899}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4199829, y: 1.2999992, z: 97.89}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1027432588}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
