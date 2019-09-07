@@ -15,6 +15,11 @@ public class ShooterController : MonoBehaviour
 
     [SerializeField] Animator animator;
 
+    public Vector3 TargettingPosition;
+
+    [SerializeField] float TargetDistance = 100.0f;
+    RaycastHit raycastHit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,14 +33,22 @@ public class ShooterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Physics.Raycast(transform.position,transform.forward,out raycastHit, TargetDistance))
+        {
+            TargettingPosition = raycastHit.point;
+        }
+        else
+        {
+            TargettingPosition = transform.position + transform.forward * TargetDistance;
+        }
+
         if (Input.GetMouseButton(1))
         {
             ChengeFOV(AdsFOV);
             playerController.IsAds = true;
         }
         else if(animator.GetBool("Sprint"))
-        {
-
+        { 
             ChengeFOV(NomalFOV * 1.5f);
         }
         else
@@ -43,7 +56,6 @@ public class ShooterController : MonoBehaviour
             playerController.IsAds = false;
             ChengeFOV(NomalFOV);
         }
-        
     }
 
     void ChengeFOV(float TargetFOV)
