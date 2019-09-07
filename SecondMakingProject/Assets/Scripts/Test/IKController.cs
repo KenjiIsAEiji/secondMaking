@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// [動きの概要]
+/// 
+/// </summary>
 public class IKController : MonoBehaviour
 {
     [SerializeField] PlayerController playerController;

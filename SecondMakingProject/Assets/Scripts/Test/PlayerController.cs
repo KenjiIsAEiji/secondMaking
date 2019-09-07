@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// <プログラム概要>
+/// [プログラム概要]
 /// プレイヤーの状態を地上状態(State.Ground)と浮遊状態(State.Hover)として、ステート管理
 /// ステートに応じて移動やアニメーションを変更
 /// </summary>
-
 public class PlayerController : MonoBehaviour
 {
     // 基本的なキャラクターの移動として、CharacterControllerを使用
@@ -258,9 +257,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    ///------------------------------------------------------------------------------------------------
+    /// <summary>
     /// キャラクターの向きを制御するメソッド
-    ///------------------------------------------------------------------------------------------------
+    /// </summary>
+    /// <param name="Target">キャラクターに行いたい回転</param>
     private void BodyTurn(Quaternion Target)
     {
         BodyTransform.localRotation = Quaternion.Slerp(
