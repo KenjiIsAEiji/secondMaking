@@ -54,7 +54,7 @@ public class ShooterController : MonoBehaviour
         // 設定した位置からRayを発射
         if (Physics.Raycast(rayOrigin,transform.forward,out raycastHit, TargetDistance))
         {
-            // ヒットしていたら、あった場所を狙っていると判断
+            // ヒットしていたら、当たった場所を狙っていると判断
             TargettingPosition = raycastHit.point;
         }
         else
