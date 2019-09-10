@@ -2,8 +2,9 @@
 
 /// <summary>
 /// [プログラム概要]
-/// プレイヤーの状態を地上状態(State.Ground)と浮遊状態(State.Hover)として、ステート管理
-/// ステートに応じて移動やアニメーションを変更
+/// ・プレイヤーの移動を記述
+/// ・プレイヤーの状態を地上状態(State.Ground)と浮遊状態(State.Hover)として、ステート管理
+/// ・ステートに応じて移動やアニメーションを変更
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float NomalSpeed = 10.0f;
     [SerializeField] float SprintScaleFactor = 2.0f;
     [SerializeField] float AirSprintScaleFactor = 3.0f;
-    public bool IsAds;      //
+    public bool IsAds;      // 外部からADS状態を格納
 
     // 空中になってからHover状態に推移できる時間
     [SerializeField] float HoverSwitchTime = 0.5f;

@@ -4,7 +4,7 @@ using UnityEngine;
 using Cinemachine;      // Cinemacine名前空間を使用
 
 /// <summary>
-/// [動きの概要]
+/// [プログラム概要]
 /// ・のぞき込みや、スプリント時にカメラの画角(FOV値)を変更
 /// ・カメラからRayCastして、カメラが狙う位置を設定(IKControllerに渡して、銃の向きを変更するため)
 /// </summary>
