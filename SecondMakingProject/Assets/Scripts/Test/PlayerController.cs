@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
-/// <プログラム概要>
-/// プレイヤーの状態を地上状態(State.Ground)と浮遊状態(State.Hover)として、ステート管理
-/// ステートに応じて移動やアニメーションを変更
+/// [プログラム概要]
+/// ・プレイヤーの移動を記述
+/// ・プレイヤーの状態を地上状態(State.Ground)と浮遊状態(State.Hover)として、ステート管理
+/// ・ステートに応じて移動やアニメーションを変更
 /// </summary>
-
 public class PlayerController : MonoBehaviour
 {
     // 基本的なキャラクターの移動として、CharacterControllerを使用
@@ -31,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float NomalSpeed = 10.0f;
     [SerializeField] float SprintScaleFactor = 2.0f;
     [SerializeField] float AirSprintScaleFactor = 3.0f;
+    public bool IsAds;      // 外部からADS状態を格納
 
     // 空中になってからHover状態に推移できる時間
     [SerializeField] float HoverSwitchTime = 0.5f;
@@ -120,15 +118,15 @@ public class PlayerController : MonoBehaviour
     private void PlayerIsGround()
     {
         character.radius = defaltRadius;        // 地上では常にデフォルトの当たり判定
-        Moving.y -= Gravity * Time.deltaTime;
 
         // 接地判定にはRaycastを使用
-        if (Physics.Raycast(transform.position, -transform.up, GroundedHight)){
+        if (Physics.SphereCast(transform.position, defaltRadius * 0.5f, -transform.up, out RaycastHit hit, GroundedHight))
+        {
             Debug.Log("IsGrounded");
             animator.SetBool("IsGround", true);
 
             // Sprint
-            if (Input.GetKey(KeyCode.LeftShift))
+            if (Input.GetKey(KeyCode.LeftShift) && IsAds == false)
             {
                 if (Move_x != 0.0f || Move_z != 0.0f)
                 {
@@ -152,10 +150,11 @@ public class PlayerController : MonoBehaviour
             else
             {
                 animator.SetBool("Sprint", false);
+
                 Moving = new Vector3(Move_x * NomalSpeed, Moving.y, Move_z * NomalSpeed);
                 BodyTurn(Quaternion.LookRotation(new Vector3(0, 0, 0)));        // 通常時のキャラクターは、カメラを向く
             }
-            
+
             flytime = 0.0f;         // 浮遊時間をリセット
             if (Input.GetKeyDown(KeyCode.Space))        // Spaceキーでジャンプ
             {
@@ -165,8 +164,13 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            Moving.y -= Gravity * Time.deltaTime;
+
             animator.SetBool("IsGround", false);
             animator.SetBool("Sprint", false);
+
+            // 地面についていない状態では、カメラを向くように設定
+            BodyTurn(Quaternion.LookRotation(new Vector3(0, 0, 0)));
 
             // 空中にいる時間をカウント
             flytime += Time.deltaTime;
@@ -192,12 +196,12 @@ public class PlayerController : MonoBehaviour
     {
         Moving = new Vector3(Move_x, 0, Move_z) * NomalSpeed;
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && IsAds == false)
         {
             if (Move_x != 0.0f || Move_z != 0.0f)
             {
                 animator.SetBool("Sprint", true);
-                
+
                 // 空中スプリント時はキャラクターの当たり判定の半径を変更
                 character.radius = AirSprintRadius;
             }
@@ -217,12 +221,20 @@ public class PlayerController : MonoBehaviour
             // スプリント時の上昇では、上向きに角度を
             if (Input.GetKey(KeyCode.Space))
             {
-                BodyTurn(Quaternion.LookRotation(new Vector3(Move_x, lazeAngle, Move_z)));
+                if (Move_x != 0.0f || Move_z != 0.0f)
+                {
+                    BodyTurn(Quaternion.LookRotation(new Vector3(Move_x, lazeAngle, Move_z)));
+                }
+                else
+                {
+                    BodyTurn(Quaternion.LookRotation(new Vector3(Move_x, 0, Move_z)));
+                }
+
             }
 
             BodyTurn(Quaternion.LookRotation(new Vector3(Move_x, 0, Move_z)));
 
-            
+
         }
         else
         {
@@ -230,7 +242,7 @@ public class PlayerController : MonoBehaviour
             Moving = new Vector3(Move_x * NomalSpeed, 0, Move_z * NomalSpeed);
 
             // 空中での通常移動では移動方向に傾く
-            BodyTurn(Quaternion.Euler(Move_z * 15, 0, Move_x * -15));
+            BodyTurn(Quaternion.Euler(Move_z * 10, 0, Move_x * -10));
 
             character.radius = defaltRadius;
         }
@@ -246,9 +258,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    ///------------------------------------------------------------------------------------------------
+    /// <summary>
     /// キャラクターの向きを制御するメソッド
-    ///------------------------------------------------------------------------------------------------
+    /// </summary>
+    /// <param name="Target">キャラクターに行いたい回転</param>
     private void BodyTurn(Quaternion Target)
     {
         BodyTransform.localRotation = Quaternion.Slerp(
