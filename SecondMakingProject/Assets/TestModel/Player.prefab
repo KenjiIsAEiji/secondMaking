@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5859379589144156141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5859379589144156138}
+  - component: {fileID: 5859379589144156135}
+  - component: {fileID: 5859379589144156139}
+  m_Layer: 2
+  m_Name: Player
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5859379589144156138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5859379589144156141}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 659.2, y: 42.4, z: 416.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 8314367422805701773}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!143 &5859379589144156135
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5859379589144156141}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2.81
+  m_Radius: 0.36
+  m_SlopeLimit: 45
+  m_StepOffset: 0.9
+  m_SkinWidth: 0.04
+  m_MinMoveDistance: 0
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5859379589144156139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5859379589144156141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63b8f56687d395f4892437d4bbd9a0da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Gravity: 30
+  JumpPower: 20
+  JetPower: 10
+  BodyTransform: {fileID: 0}
+  turnSpeed: 10
+  lazeAngle: 5
+  CamTransform: {fileID: 0}
+  NomalSpeed: 7
+  SprintScaleFactor: 2.3
+  AirSprintScaleFactor: 5
+  IsAds: 0
+  HoverSwitchTime: 0.5
+  GroundedHight: 1.63
+  AirSprintRadius: 1.77
+  animator: {fileID: 0}
+--- !u!1001 &8314367422806093369
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5859379589144156138}
+    m_Modifications:
+    - target: {fileID: 100052, guid: 317bd1d2b778cf0448b311d615661b6e, type: 3}
+      propertyPath: m_Name
+      value: ToonSoldiers_customizable
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 317bd1d2b778cf0448b311d615661b6e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 317bd1d2b778cf0448b311d615661b6e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 317bd1d2b778cf0448b311d615661b6e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 317bd1d2b778cf0448b311d615661b6e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 317bd1d2b778cf0448b311d615661b6e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 317bd1d2b778cf0448b311d615661b6e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 317bd1d2b778cf0448b311d615661b6e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 317bd1d2b778cf0448b311d615661b6e, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 317bd1d2b778cf0448b311d615661b6e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 317bd1d2b778cf0448b311d615661b6e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400052, guid: 317bd1d2b778cf0448b311d615661b6e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 317bd1d2b778cf0448b311d615661b6e, type: 3}
+--- !u!4 &8314367422805701773 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400052, guid: 317bd1d2b778cf0448b311d615661b6e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8314367422806093369}
+  m_PrefabAsset: {fileID: 0}
